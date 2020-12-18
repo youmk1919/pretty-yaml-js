@@ -1,0 +1,160 @@
+common-name:
+  entities: #FOCUS ON THIS ARRAY FORMAT
+    - key: key1
+      roles:
+        - ROLE_ADMIN
+      callerName: intranet
+    - key: key2
+      roles:
+        - ROLE_USER
+      callerName: intranet
+
+endpoints:
+  prometheus:
+    sensitive: false
+eureka:
+  client:
+    enabled: true
+    eureka-connection-idle-timeout-seconds: 15
+    eureka-server-connect-timeout-seconds: 3
+    eureka-server-read-timeout-seconds: 4
+    fetchRegistry: true
+    registerWithEureka: true
+    registry-fetch-interval-seconds: 10
+    serviceUrl:
+      defaultZone: http://blabla:8080/eur,http://blibli:8080/eur
+  instance:
+    preferIpAddress: true
+gateway:
+  callers:
+    api-gateway:
+      callerKeys: api-gateway
+      name: api-gateway
+      tokenFiltering: false
+      zuulFilters:
+        error: zullEror1
+        post: ApiErrorFilter
+        pre: pre1, pre2, pre3, pre4, pre5
+    extranet:
+      auth: ROLE_USER
+      callerKeys: abcdbdbcdbdcbdbcbdcbdb
+      codes:
+        canal: 03
+        guichet: 03
+      fallback-secret: my-secret
+      name: extra
+      secret: UB+JIZ3DwRbSVMzQsJ1F++bs3wqOmVVVpKTuY9+N7DLT8bBbufGtSRPATXylNLcswB3aMHGXq2x/9Vk0g/zkXg==
+      zuulFilters:
+        error: gateError
+        post: ApiErrorFilter
+        pre: A1, B1, C1
+        routing: 
+    internet:
+      auth: ROLE_USER
+      callerKeys: hye6XuPX62mXaC7jFkA66E4a8aHE62u8
+      codes:
+        canal: 01
+        guichet: 02
+      fallback-secret: my-secret-token
+      name: internet
+      secret: UB+JIZ3DwRbSVMzQsJ1F++bs3wqOmVVVpKTuY9+N7DLT8bBbufGtSRPATXylNLcswB3aMHGXq2x/9Vk0g/zkXg==
+      zuulFilters:
+        error: GatewayErrorFilter
+        post: ApiErrorFilter
+        pre: MasheryFilter,er
+        routing: 
+    intranet:
+      auth: ROLE_ADMIN
+      callerKeys: a3QnemV79r6y8Ug3BdA3D73P54sQpNjD
+      codes:
+        canal: 02
+        guichet: 01
+      name: intranet
+      secret: 9SyECk96oDsTmXfogIieDI0cD/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0oCBjXWICA==
+      zuulFilters:
+        error: GatewayErrorFilter
+        post: ApiErrorFilter
+        pre: 5z5z5, d5d5
+        routing: 
+  defaultCallerName: extranet
+  token-intra-apis-timetolive: 180
+guest-stars: #FOCUS ON THIS ARRAY FORMAT
+  apis:
+    - "/api0/blaba0/v1"
+    - "/api1/blaba1/v1"
+    - "/api2/blaba2/v1"
+    - "/api3/blaba3/v1"
+    - "/api4/blaba4/v1"
+http:
+  multipart:
+    max-file-size: 30MB
+    max-request-size: 30MB
+https:
+  proxy: http://hello:bla@blaa.ddddddd.bla:8080/
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+        timeout:
+          enabled: false
+kitsune:
+  url: https://bla.blabla.caca.fr
+logging:
+  config: http://blaaa.blaa.com:8080/${spring.application.name}/${spring.profiles.active}/${spring.cloud.config.label:master}/logback.xml
+management:
+  metrics:
+    distribution:
+      percentiles-histogram[http.server.requests]: false ## FOCUS ON THIS LINE
+    export:
+      prometheus:
+        enabled: true
+ribbon:
+  ConnectTimeout: 30000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 2
+  ReadTimeout: 30000
+  ServerListRefreshInterval: 10000
+servlet:
+  multipart:
+    max-file-size: 30MB
+spring:
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 30MB
+  metrics:
+    prometheus:
+      enabled: true
+ssl:
+  keystore:
+    passwordFile: /selfcerts/passphrase
+    path: /selfcerts/keystore.jks
+token:
+  jwk:
+    url: http://blaaaaaaaaa-tatafr-pprodcorr.tata.com/connect/jwk
+  secret: my-secret-token-to-change-in-production
+  timetolive: 600000
+zuul:
+  retryable: true
+  routes:
+    iard-couvertures-a-date:
+      path: a1111111e/**
+    iard-couvertures-contractuelles:
+      path: a22222222222s/**
+    iard-devis:
+      path: /ap00/b11/v*1/sss55s/**
+    iard-risques-a-assurer:
+      path: /d4d4/s55s/v*1/s5s55/**
+    personnes-foyers-v1:
+      path: /s2s2/2ss2/v*1/s0s0/**
+    personnes-personnes-physiques-v1:
+      path: /s5s5/ss5s5/v*1/s5s5/**
+    personnes-produits-concurrence:
+      path: /ss55/s5s5/v*1/s5s55s/**
+    support-donnees-references-v5:
+      path: /0s0s/s5s5/v5/**
+  semaphore:
+    max-semaphores: 2000
