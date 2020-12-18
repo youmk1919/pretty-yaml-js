@@ -42,7 +42,7 @@
   gateway.callers.internet.secret: "UB+JIZ3DwRbSVMzQsJ1F++bs3wqOmVVVpKTuY9+N7DLT8bBbufGtSRPATXylNLcswB3aMHGXq2x/9Vk0g/zkXg=="
   gateway.callers.internet.zuulFilters.error: "GatewayErrorFilter"
   gateway.callers.internet.zuulFilters.post: "ApiErrorFilter"
-  gateway.callers.internet.zuulFilters.pre: "MasheryFilter,er"
+  gateway.callers.internet.zuulFilters.pre: "mass,er"
   gateway.callers.internet.zuulFilters.routing: ""
   gateway.callers.intranet.auth: "ROLE_ADMIN"
   gateway.callers.intranet.callerKeys: "a3QnemV79r6y8Ug3BdA3D73P54sQpNjD"
