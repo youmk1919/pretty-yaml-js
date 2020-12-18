@@ -1,6 +1,8 @@
 # Installation
 
-git clone https://github.com/youmk1919/pretty-yml-format
-cd pretty-yml-format
-node ./generate.js > result.yml
-# pretty-yaml-js
+git clone https://github.com/youmk1919/pretty-ymal-js
+
+cd pretty-yaml-js
+
+node ./generate.js 
+
